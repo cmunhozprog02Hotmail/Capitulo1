@@ -37,8 +37,10 @@ namespace Capitulo1
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            // Uso de arquivos estaticos
             app.UseStaticFiles();
 
+            //Definição de rotas
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
