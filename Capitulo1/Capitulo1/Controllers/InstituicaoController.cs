@@ -52,7 +52,7 @@ namespace Capitulo1.Controllers
             return View();
         }
 
-        // GET POSt
+        // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create (Instituicao instituicao)
