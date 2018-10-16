@@ -43,7 +43,7 @@ namespace Capitulo1.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View(instituicoes);
+            return View(instituicoes.OrderBy(i => i.Nome));
         }
 
         // GET: Create
@@ -60,8 +60,32 @@ namespace Capitulo1.Controllers
             instituicoes.Add(instituicao);
             instituicao.InstituicaoID = instituicoes.Select(i => i.InstituicaoID).Max() + 1;
             return RedirectToAction("Index"); 
-
         }
+
+        //GET: Edit
+        public ActionResult Edit(long id)
+        {
+            return View(instituicoes.Where(i => i.InstituicaoID == id).First());
+        }
+
+        //POST: Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult Edit(Instituicao instituicao)
+        {
+            instituicoes.Remove(instituicoes.Where
+                (i => i.InstituicaoID == instituicao.InstituicaoID).First());
+            instituicoes.Add(instituicao);
+            return RedirectToAction("index");
+        }
+
+        //GET: Details
+        public ActionResult Details(long id)
+        {
+            return View(instituicoes.Where(i => i.InstituicaoID == id).First());
+        }
+
 
     }
 }
