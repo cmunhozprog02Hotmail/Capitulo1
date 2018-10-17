@@ -86,6 +86,23 @@ namespace Capitulo1.Controllers
             return View(instituicoes.Where(i => i.InstituicaoID == id).First());
         }
 
+        //GET: Delete
+        public ActionResult Delete(long id)
+        {
+            return View(instituicoes.Where(i => i.InstituicaoID == id).First());
+        }
+
+        //POST: Delete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Instituicao instituicao)
+        {
+            instituicoes.Remove(instituicoes.Where
+                (i => i.InstituicaoID == instituicao.InstituicaoID).First());
+            return RedirectToAction("Index");
+        }
+
+
 
     }
 }
